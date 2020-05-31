@@ -1,0 +1,74 @@
+.admin-meta-fields{
+    background-color: #f7f7f7;
+    border: 1px solid #eaeaea;
+    margin: 6px 0px;
+    border-radius: 2px;
+}
+
+.admin-html-icon{
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.admin-html-icon.spice{
+    font-size: 26px;
+    color: red;
+}
+
+.admin-meta-fields .admin-input{
+	background: #ffffff;
+    height: 45px;
+    width: 100%;
+    color: black;
+    font-size: 0.9rem;
+    border:1px solid black;
+    border-radius: 4px;
+    margin-top: 4px;
+}
+
+.post-thumbnal-size img{
+    width: 4rem;
+    height: auto;
+}
+
+.edit-menu-image{
+    position: absolute;
+    right: 10%;
+    top: auto;
+    bottom: 160px;
+    padding: 1rem;
+    border: 1px solid #0073aa;
+}
+
+#img_upload_image{
+    width: 18rem;
+    display: block;
+    margin-top: 10px;
+}
+
+.admin-meta-fields .admin-input.readonly{
+	background: #ededed!important;
+}
+
+.admin-meta-fields .input-holder{
+    margin: 6px 0;
+    padding: 14px 10px;
+}
+
+.admin-meta-fields label{
+    color: black;
+    font-size: 1em;
+    font-family: 'Roboto', sans-serif;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.admin-meta-fields h1{
+    color: black;
+    margin: 0;
+    font-size: 2rem;
+    border-bottom: 4px solid black;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+	font-family: 'Rubik', sans-serif;
+}

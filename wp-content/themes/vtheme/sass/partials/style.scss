@@ -1,0 +1,583 @@
+
+/**
+*
+* Theme Name: vTheme
+* Author: Karandeep Singh Virk, Stackoverflow
+* Author URL: https://www.vcupcode.ca;
+
+* cd xampp/htdocs/dosa/wp-content/themes/vtheme/sass/partials sass --watch style.scss ../../style.css
+*/
+
+$primary-color:#000000;
+$secondary-color:#ffffff;
+$primary-button:#ffd400;
+$primary-font: 'Open Sans', sans-serif;
+
+body{
+    background-color: #f6f6f6;
+    margin:0;
+    font-family:$primary-font;
+}
+.main-top-bar{
+    height: auto;
+    background: rgba(255,255,255,0.9);
+    position: fixed;
+    width: 100%;
+    z-index: 9999;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 120px;
+    box-shadow: 0px 1px 12px -6px #00000078;
+    overflow: hidden;
+    .top-bar-buttons{
+        .top-button{
+            box-sizing: border-box;
+            background: #f15f31;
+            text-decoration: none;
+            color: white;
+            padding: 1.6rem 3rem;
+            font-family:$primary-font;
+            margin-right:18px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            &.cancel{
+                background:#d32e2e;
+            }
+            &.pay{
+                background: #88c3ff91;
+                color: #5e6f7f;
+            }
+            &.order-button{
+                background: #86ec97;
+                color: #316439;
+            }
+            &.discount{
+                background: #f1e231;
+                color: black;
+            }
+            &.global{
+                background: #585858;
+                color: white;
+            }
+        }
+    }
+    .logo{
+        img{
+            width: 12rem;
+            padding: 6px 4px 4px 8px;
+        }
+    }
+}
+.main-page-container{
+    overflow-x: hidden;
+    padding-top: 140px;
+    padding-right:20px;
+    .window-bar{
+        width: max-content;
+        padding: 1rem 2rem;
+        background-color: #c1c1c1;
+        top: 87px;
+        position: absolute;
+        z-index: 99999;
+        h2{
+            color: black;
+            margin:0;
+            text-transform: uppercase;
+        }
+    }
+    .category-inner{
+        width: 250px;
+        margin: 0px 10px 10px 0;
+        position: fixed;
+        z-index: 9999;
+    }
+    .products{
+        box-shadow: 0px 0px 29px -6px rgba(199, 199, 199, 0.1);
+        width: 1000px;
+        background: white;
+        margin: 60px 0;
+        border-left: 0;
+    }
+}
+.slick-carousel-image{
+    cursor: pointer;
+    position: relative;
+    padding: 50px 0;
+    background-size: cover;
+    background-position: center;
+    background-color: black;
+    transition:300ms;
+    .carousel-title{
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        text-align: center;
+        color: #f6f6f6;
+        top: 0;
+        bottom: 0;
+        text-transform: uppercase;
+        font-size: 1.8rem;
+        width: 100%;
+        margin: 0;
+        background: rgba(0, 0, 0, 0.4);
+        transition: 500ms;
+        font-family: $primary-font;
+        font-weight: 700;
+        font-style: normal;
+        letter-spacing: 2px;
+        text-shadow: 2px 2px 8px #000000;
+    }
+    &:hover{
+        .carousel-title{
+            background: rgba(0, 0, 0, 0);
+            color: white;
+            text-shadow: 2px 2px 2px #353535;
+            box-shadow: none;
+        }
+    }
+}
+.slick-slider{
+    left: 20px;
+    width: 300px;
+    overflow: hidden;
+    height: auto;
+}
+
+.slick-top-arrow{
+    display: block;
+    margin: 0px 0px;
+    background: #ffffff;
+    width: 300px;
+    left: 20px;
+    border:none;
+    z-index: 999;
+    position: relative;
+    border: none;
+    box-shadow: 0px 3px 10px -6px #00000038;
+    i{
+        color:black;
+    }
+}
+
+.slick-bottom-arrow{
+    display: block;
+    margin: 0px 0px;
+    background: #ffffff;
+    width: 300px;
+    left: 20px;
+    z-index: 999;
+    border:none;
+    box-shadow: 0px 3px 10px -6px #00000038;
+    position: relative;
+    i{
+        color:black;
+    }
+}
+
+.fa-size{
+    font-size: 3rem;
+}
+
+.slick-vertical {
+    .slick-slide{
+        border:0px!important;   
+    }
+}
+.sub-level{
+    display: flex;
+    justify-content: flex-start;
+    margin: 0 0 0 340px;
+    position: relative;
+    &.margin-fix{
+        margin-bottom: 20px;
+    }
+    .sub-level-inner{
+        padding: 0rem;
+        border-bottom: 20px solid #f9f9f9;
+        display: none;
+        margin-right: 20px;
+        .sub-level-image{
+            padding: 80px 80px;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        h2{
+            top: 0;
+            color: #282828;
+            padding: 8px;
+            margin: auto;
+            font-size: 1rem;
+            font-family: $primary-font;
+            font-weight: 600;
+            background: white;
+        }
+    }
+}
+.all-items{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 20px;
+    padding: 0;
+    position: relative;
+    margin-left: 340px;
+    .current-modal{
+        position: fixed;
+        z-index: 999;
+        width: 78%;
+        top: 140px;
+        height: auto;
+        min-height: 500px;
+        background: white;
+        display: none;
+        .modal-top{
+            .modal-title{
+                background: black;
+                color: white;
+                margin: 0;
+                padding: 20px;
+                font-size: 2rem;
+                font-family: $primary-font;
+                font-weight: 700;
+            }
+            .close-modals{
+                position: absolute;
+                right: 0;
+                padding: 20px;
+                font-size: 2rem;
+                color: red;
+                cursor: pointer;
+            }
+        }
+        .modal-inner{
+            display: flex;
+            .modal-left{
+                width: 50%;
+                .modal-image{
+                    background-size: cover;
+                    background-position: center;
+                    padding: 14rem 0;
+                }       
+            }
+            .modal-right{
+                .success-message{
+                    font-size: 1.3rem;
+                    color: #52aa61;
+                    padding: 10px;
+                    margin: 1rem;
+                    font-family: $primary-font;
+                    font-weight: 400;
+                    display: none;
+                }
+                width: 50%;
+                 .modal-description{
+                    margin: 10px 0 0 0;
+                    padding: 6px 20px;
+                }
+                .modal-price{
+                    margin: 0;
+                    padding: 6px 20px;
+                    font-size: 3rem;
+                    font-weight: bold;
+                    color: green;
+                }
+                .modal-number{
+                    width: 20%;
+                    margin: 20px;
+                    padding: 10px 10px;
+                }
+                .bottom-part{
+                    display: flex;
+                    align-items: center;
+                    background: #f0f0f0;
+                    justify-content: space-evenly;
+                    position: absolute;
+                    bottom: 0;
+                    left: 50%;
+                    right: 0;
+                    width: 50%;
+                    .incrementor{
+                        padding: 1rem;
+                        a{
+                            color: black;
+                            i{
+                                font-size: 2rem;
+                                color: #000000;
+                            }
+                        }
+                        #value{
+                            font-size: 2rem;
+                            padding: 1rem;
+                            font-family: $primary-font;
+                            color: #474747;
+                        }
+                    }
+                    .bottom-button{
+                        padding:1rem;
+                        button{
+                            background-color: #000000;
+                            padding: 0.5rem;
+                            padding: 1rem 3rem;
+                            border: none;
+                            font-family: $primary-font;
+                            font-weight: 700;
+                            color: #ffffff;
+                            font-size: 1.3rem;
+                            cursor: pointer;
+                            text-transform: uppercase;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .inner-box{
+        overflow: hidden;
+        transition: 500ms;
+        .item-image{
+            position: relative;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            height: 320px;
+            box-shadow: 0px 0px 26px -5px #00000075;
+            cursor: pointer;
+            transition: 2000ms;
+            &:hover{
+                background-position: unset;
+                box-shadow: none;
+                opacity: 0.9;
+                .item-title{
+                    background-color:#f15f31;
+                    color: #fff;
+                    box-shadow: none;
+                }
+                .price-circle{
+                    background-color:white;
+                    color: #000000;
+                }
+            }
+            .item-title{
+                margin: 0;
+                transform: translate(0%, 0px);
+                background: #ffffffde;
+                font-size: 20px;
+                padding: 0;
+                color: #000000;
+                padding: 14px 0;
+                display: flex;
+                justify-content: center;
+                letter-spacing: 1px;
+                box-shadow: 0px 0px 6px 4px #00000026;
+                font-family: $primary-font;
+                font-weight: 500;
+
+            }
+            .price-circle{
+                background: #000000;
+                color: white;
+                border-radius: 10px;
+                font-size: 1.6rem;
+                position: absolute;
+                right: 0;
+                margin: 10px;
+                border: 2px solid #000000;
+                height: 90px;
+                width: 90px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .order-in-cart{
+                position: absolute;
+                text-align: center;
+                display: flex;
+                justify-content: center;
+                background: #2acb45;
+                height: 40px;
+                width: 200px;
+                justify-content: center;
+                align-items: center;
+                font-size: 1.2rem;
+                color: white;
+                bottom: 10px;
+                font-weight: bold;
+                box-shadow: 0px 0px 10px 0px #00000061;
+            }
+        }
+    }
+}
+
+.order-modal{
+    position: absolute;
+    display: none;
+    left: 340px;
+    top: 140px;
+    background: white;
+    padding: 0;
+    h2{
+        margin: 0;
+        padding: 1rem; 
+        font-family: $primary-font;
+        font-weight: 500;
+        font-size:2rem;
+        background-color: black;
+        color: white;
+    }
+    h3{
+        font-size:2.5rem;
+        padding: 0 1rem 2rem 1rem;
+        margin: 0;
+    }
+    .grid-body{
+        padding: 1rem;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        .no-items{
+            font-size: 1.2rem;
+        }
+        .body-row{
+            .order-modal-p-value{
+                height: 50px;
+                color: #333333;
+                font-weight: 700;
+                font-size: 1.5rem;
+                width: 90px;
+                border: 1px solid #dedede;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+            }
+            font-weight: 500;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            padding: 10px;
+            border-bottom: 1px solid #e4e4e4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+           
+            &.main-col{
+                font-size: 1.3rem;
+                color: #5e5e5e;
+            }
+            &.second-col{
+                color: #a8a8a8;
+                font-size: 1.5rem;
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+            }
+            &.price-col{
+                font-weight: bold;
+                font-family: monospace;
+                font-size: 1.8rem;
+                color: #141414;
+            }
+            button{
+                background: #d32e2e;
+                color: white;
+                border: none;
+                border-radius: 0;
+                font-size: 1.2rem;
+                padding: 1em 3rem;
+            }
+        }
+    }
+}
+
+.payments-container{
+    display: none;
+    .payment-modal{
+        margin-bottom: 10px;
+        position: static;
+        margin-left: 340px;
+        background: white;
+        padding: 0;
+        width: 60%;
+         .modal-top{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: white;
+            .modal-title-payment{
+                text-transform: uppercase;
+                letter-spacing: 2px;
+                background: white;
+                color: black;
+                margin: 0;
+                padding: 20px;
+                font-size: 1.5rem;
+            }
+            .payment-form-button{
+                cursor: pointer;
+                i{
+                    background: white;
+                    color: black;
+                    padding: 1rem 2rem;
+                    font-size: 2rem;
+                } 
+            }
+        }
+    }
+    #form-container{
+        background: white;
+        padding: 1rem 2rem;
+        border: 1px solid #f9f9f9;
+        .square-image{
+            width: auto;
+            height: 70px;
+        }
+        .third {
+            float: left;
+            width: calc((100% - 32px) / 3);
+            padding: 0;
+            margin: 0 16px 16px 0;
+        }
+
+        .third:last-of-type {
+            margin-right: 0;
+        }
+
+        /* Define how SqPaymentForm iframes should look */
+        .sq-input {
+            height: 66px;
+            box-sizing: border-box;
+            display: inline-block;
+            background: #ededed;
+            -webkit-transition: border-color .2s ease-in-out;
+            -moz-transition: border-color .2s ease-in-out;
+            -ms-transition: border-color .2s ease-in-out;
+            transition: border-color .2s ease-in-out;
+        }
+
+        /* Define how SqPaymentForm iframes should look when they have focus */
+        .sq-input--focus {
+            border: 1px solid #4A90E2;
+        }
+
+        /* Define how SqPaymentForm iframes should look when they contain invalid values */
+        .sq-input--error {
+            border: 1px solid #E02F2F;
+        }
+        button{
+            background: #3190f1;
+            box-sizing: border-box;
+            text-decoration: none;
+            color: white;
+            padding: 1rem 3rem;
+            font-size: 1.2rem;
+            font-family:$primary-font;
+            margin-right:18px;
+            border:none;
+        }
+        #sq-card-number {
+            margin-bottom: 16px;
+        }
+    }
+}

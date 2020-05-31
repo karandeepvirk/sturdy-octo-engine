@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html>
+	<head>
 	<?php 
 		// echo '<pre>';
 		// var_dump($_SESSION);
 		// echo '</pre>';
+		// Flow_Controller::IfUserCanModifyOrder();
 	?>
-	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link href="<?php echo get_template_directory_uri()?>/style.css" rel="stylesheet">
@@ -20,10 +21,23 @@
 			<img src="<?php echo get_template_directory_uri()?>/images/logo.png">
 		</div>
 		<div class="top-bar-buttons">
-			<a href="" class="top-button global">Global Orders</a>
-			<a href="" class="top-button order-button">Order (<span id="total-order-button"><?php echo Order_Controller::getTotalProductsInOrder();?></span>)</a>
-			<a href="" class="top-button pay">Pay ($<span class="total-payment-button"><?php echo Order_Controller::getOrderTotal()['total'];?></span>)</a>
-			<a href="" class="top-button cancel">Cancel Order</a>
+			<?php 
+			if(!is_user_logged_in()){?>
+				<a href="<?php echo wp_login_url();?>" class="top-button clock-in">LOGIN</a>
+				<?php }else{?>
+				<a href="<?php echo wp_logout_url();?>" class="top-button clock-out">LOGOUT</a>
+			<?php }?>
+			<a href="" class="top-button global">GLOBAL ORDERS</a>
+			<?php 
+				if(Flow_Controller::IfUserCanModifyOrder()){?>
+					<a href="" class="top-button discount">ADD DISCOUNT</a>
+				<?php }
+			?>
+			<?php 
+				$intHideOut = (Order_Controller::getTotalProductsInOrder() == 0) ? 'hide-out' : '';?>
+				<a href="" class="<?php echo $intHideOut;?> top-button order-button">Order (<span id="total-order-button"><?php echo Order_Controller::getOrderTotal()['total_items'];?></span>)</a>
+				<a href="" class="<?php echo $intHideOut;?> top-button pay">Pay ($<span class="total-payment-button"><?php echo Order_Controller::getOrderTotal()['total'];?></span>)</a>
+				<a href="" class="<?php echo $intHideOut;?> top-button cancel">CANCEL ORDER</a>
 		</div>
 	</div>
 <body>

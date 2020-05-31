@@ -37,6 +37,9 @@ body {
   font-size: 1.2rem;
   text-transform: uppercase;
 }
+.main-top-bar .top-bar-buttons .top-button.hide-out {
+  display: none;
+}
 .main-top-bar .top-bar-buttons .top-button.cancel {
   background: #d32e2e;
 }
@@ -55,6 +58,14 @@ body {
 .main-top-bar .top-bar-buttons .top-button.global {
   background: #585858;
   color: white;
+}
+.main-top-bar .top-bar-buttons .top-button.clock-in {
+  border: 0px solid black;
+  color: #ffffff;
+  background: #3e67a4;
+}
+.main-top-bar .top-bar-buttons .top-button.clock-out {
+  background: orange;
 }
 .main-top-bar .logo img {
   width: 12rem;
@@ -480,22 +491,49 @@ body {
 
 .payments-container {
   display: none;
+  margin-left: 340px;
+  padding-right: 20px;
 }
-.payments-container .payment-modal {
+.payments-container .payments-accrodian {
+  background: white;
+}
+.payments-container .payments-accrodian .paymets-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  background: black;
+}
+.payments-container .payments-accrodian .paymets-header h2 {
+  background: black;
+  margin: 0;
+  padding: 1rem;
+  font-size: 2rem;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+.payments-container .payments-accrodian .paymets-header span i {
+  font-size: 3rem;
+  margin-right: 16px;
+}
+.payments-container .payments-accrodian .payments-body {
+  padding: 20px;
+}
+.payments-container .payments-accrodian .payments-body .payment-modal {
   margin-bottom: 10px;
   position: static;
-  margin-left: 340px;
   background: white;
-  padding: 0;
-  width: 60%;
+  padding: 0 20px;
 }
-.payments-container .payment-modal .modal-top {
+.payments-container .payments-accrodian .payments-body .payment-modal .modal-top {
   display: flex;
+  border: 1px solid #e8e8e8;
   align-items: center;
   justify-content: space-between;
   background: white;
 }
-.payments-container .payment-modal .modal-top .modal-title-payment {
+.payments-container .payments-accrodian .payments-body .payment-modal .modal-top .modal-title-payment {
   text-transform: uppercase;
   letter-spacing: 2px;
   background: white;
@@ -504,16 +542,16 @@ body {
   padding: 20px;
   font-size: 1.5rem;
 }
-.payments-container .payment-modal .modal-top .payment-form-button {
+.payments-container .payments-accrodian .payments-body .payment-modal .modal-top .payment-form-button {
   cursor: pointer;
 }
-.payments-container .payment-modal .modal-top .payment-form-button i {
+.payments-container .payments-accrodian .payments-body .payment-modal .modal-top .payment-form-button i {
   background: white;
   color: black;
   padding: 1rem 2rem;
   font-size: 2rem;
 }
-.payments-container #form-container {
+.payments-container .payments-accrodian .payments-body #form-container {
   background: white;
   padding: 1rem 2rem;
   border: 1px solid #f9f9f9;
@@ -521,20 +559,20 @@ body {
   /* Define how SqPaymentForm iframes should look when they have focus */
   /* Define how SqPaymentForm iframes should look when they contain invalid values */
 }
-.payments-container #form-container .square-image {
+.payments-container .payments-accrodian .payments-body #form-container .square-image {
   width: auto;
   height: 70px;
 }
-.payments-container #form-container .third {
+.payments-container .payments-accrodian .payments-body #form-container .third {
   float: left;
   width: calc((100% - 32px) / 3);
   padding: 0;
   margin: 0 16px 16px 0;
 }
-.payments-container #form-container .third:last-of-type {
+.payments-container .payments-accrodian .payments-body #form-container .third:last-of-type {
   margin-right: 0;
 }
-.payments-container #form-container .sq-input {
+.payments-container .payments-accrodian .payments-body #form-container .sq-input {
   height: 66px;
   box-sizing: border-box;
   display: inline-block;
@@ -544,13 +582,13 @@ body {
   -ms-transition: border-color 0.2s ease-in-out;
   transition: border-color 0.2s ease-in-out;
 }
-.payments-container #form-container .sq-input--focus {
+.payments-container .payments-accrodian .payments-body #form-container .sq-input--focus {
   border: 1px solid #4A90E2;
 }
-.payments-container #form-container .sq-input--error {
+.payments-container .payments-accrodian .payments-body #form-container .sq-input--error {
   border: 1px solid #E02F2F;
 }
-.payments-container #form-container button {
+.payments-container .payments-accrodian .payments-body #form-container button {
   background: #3190f1;
   box-sizing: border-box;
   text-decoration: none;
@@ -561,7 +599,7 @@ body {
   margin-right: 18px;
   border: none;
 }
-.payments-container #form-container #sq-card-number {
+.payments-container .payments-accrodian .payments-body #form-container #sq-card-number {
   margin-bottom: 16px;
 }
 

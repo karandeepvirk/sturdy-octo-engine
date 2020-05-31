@@ -24,6 +24,8 @@ class Order_Controller{
 			'cart_string' => '',
 			'order_total' => 0,
 			'total_products' => 0,
+			'show_buttons' => false,
+			'total_items' =>0
 		);
 		return $arrReturn;
 	}
@@ -284,14 +286,16 @@ class Order_Controller{
 					$intValue 		= $objOrders[0]['value'];
 					$intPrice 		= get_post_meta($intProduct, 'item_price',true);
 					$intTotal		= $intPrice*$intValue;
+					$intItems 		+= $objOrders[0]['value'];
 					$orderTotal		+= $intTotal;
 					$arrProducts[]	= array(
 						'id' => $intProduct,
 						'value' => $intValue
 					);
 				}
-				$arrReturn['total'] = (double) $orderTotal;
-				$arrReturn['products'] = $arrProducts;
+				$arrReturn['total'] 	  = (double) $orderTotal;
+				$arrReturn['products'] 	  = $arrProducts;
+				$arrReturn['total_items'] = $intItems;
 			}
 		}
 		return $arrReturn;
@@ -307,8 +311,12 @@ class Order_Controller{
 		$arrReturn['error'] 		 = false;
 		$arrReturn['cart_string'] 	 = self::cartString();
 		$arrReturn['order_total'] 	 = self::getOrderTotal()['total'];
-		$arrReturn['products'] 	 	= self::getOrderTotal()['products'];
+		$arrReturn['products'] 	 	 = self::getOrderTotal()['products'];
+		$arrReturn['total_items'] 	 = self::getOrderTotal()['total_items'];
 		$arrReturn['total_products'] = self::getTotalProductsInOrder();
+		if(self::getTotalProductsInOrder()>0){
+			$arrReturn['show_buttons'] = true;
+		}
 		return $arrReturn;
 	}
 }

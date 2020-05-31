@@ -235,9 +235,18 @@ jQuery(document).ready(function($){
 			if(objResponse.cart_string.length>0){
 				objDosa.element_ajax_cart.html(objResponse.cart_string);
 			}
-			objDosa.element_order_button_value.html(objResponse.total_products);
-			objDosa.element_total_payment_button.html(objResponse.order_total);
-			$('.order-ajax-hook').hide(); 
+			if(objResponse.show_buttons == true){
+				$('.order-button').removeClass('hide-out');
+				$('.pay').removeClass('hide-out');
+				$('.cancel').removeClass('hide-out');
+			}else{
+				$('.order-button').addClass('hide-out');
+				$('.pay').addClass('hide-out');
+				$('.cancel').addClass('hide-out');
+			}
+			objDosa.element_order_button_value.html(objResponse.total_items);
+			objDosa.element_total_payment_button.html(objResponse.order_total.toFixed(2));
+			$('.order-ajax-hook').hide();
 			$.each(objResponse.products, function() {
 				var intProductId = this.id; 
 				var intValue 	 = this.value;

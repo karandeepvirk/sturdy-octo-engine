@@ -42,6 +42,9 @@ body{
             font-weight: 700;
             font-size: 1.2rem;
             text-transform: uppercase;
+            &.hide-out{
+                display: none;
+            }
             &.cancel{
                 background:#d32e2e;
             }
@@ -60,6 +63,14 @@ body{
             &.global{
                 background: #585858;
                 color: white;
+            }
+            &.clock-in{
+                border: 0px solid black;
+                color: #ffffff;
+                background: #3e67a4;
+            }
+            &.clock-out{
+                background: orange;
             }
         }
     }
@@ -493,91 +504,120 @@ body{
 
 .payments-container{
     display: none;
-    .payment-modal{
-        margin-bottom: 10px;
-        position: static;
-        margin-left: 340px;
+    margin-left: 340px;
+    padding-right: 20px;
+    .payments-accrodian{
         background: white;
-        padding: 0;
-        width: 60%;
-         .modal-top{
+        .paymets-header{
             display: flex;
-            align-items: center;
             justify-content: space-between;
-            background: white;
-            .modal-title-payment{
-                text-transform: uppercase;
-                letter-spacing: 2px;
-                background: white;
-                color: black;
-                margin: 0;
-                padding: 20px;
-                font-size: 1.5rem;
-            }
-            .payment-form-button{
-                cursor: pointer;
-                i{
-                    background: white;
-                    color: black;
-                    padding: 1rem 2rem;
-                    font-size: 2rem;
-                } 
-            }
-        }
-    }
-    #form-container{
-        background: white;
-        padding: 1rem 2rem;
-        border: 1px solid #f9f9f9;
-        .square-image{
-            width: auto;
-            height: 70px;
-        }
-        .third {
-            float: left;
-            width: calc((100% - 32px) / 3);
-            padding: 0;
-            margin: 0 16px 16px 0;
-        }
-
-        .third:last-of-type {
-            margin-right: 0;
-        }
-
-        /* Define how SqPaymentForm iframes should look */
-        .sq-input {
-            height: 66px;
-            box-sizing: border-box;
-            display: inline-block;
-            background: #ededed;
-            -webkit-transition: border-color .2s ease-in-out;
-            -moz-transition: border-color .2s ease-in-out;
-            -ms-transition: border-color .2s ease-in-out;
-            transition: border-color .2s ease-in-out;
-        }
-
-        /* Define how SqPaymentForm iframes should look when they have focus */
-        .sq-input--focus {
-            border: 1px solid #4A90E2;
-        }
-
-        /* Define how SqPaymentForm iframes should look when they contain invalid values */
-        .sq-input--error {
-            border: 1px solid #E02F2F;
-        }
-        button{
-            background: #3190f1;
-            box-sizing: border-box;
-            text-decoration: none;
+            align-items: center;
             color: white;
-            padding: 1rem 3rem;
-            font-size: 1.2rem;
-            font-family:$primary-font;
-            margin-right:18px;
-            border:none;
+            background: black;
+            h2{
+                background:black;
+                margin: 0;
+                padding: 1rem;
+                font-size: 2rem;
+                font-family:$primary-font;
+                font-weight: 500;
+                text-transform: uppercase;
+            }
+            span{
+                i{
+                    font-size: 3rem;
+                    margin-right:16px; 
+                }
+            }
         }
-        #sq-card-number {
-            margin-bottom: 16px;
+        .payments-body{
+            padding:20px;
+            .payment-modal{
+                margin-bottom: 10px;
+                position: static;
+                background: white;
+                padding: 0 20px;
+                 .modal-top{
+                    display: flex;
+                    border:1px solid #e8e8e8;
+                    align-items: center;
+                    justify-content: space-between;
+                    background: white;
+                    .modal-title-payment{
+                        text-transform: uppercase;
+                        letter-spacing: 2px;
+                        background: white;
+                        color: black;
+                        margin: 0;
+                        padding: 20px;
+                        font-size: 1.5rem;
+                    }
+                    .payment-form-button{
+                        cursor: pointer;
+                        i{
+                            background: white;
+                            color: black;
+                            padding: 1rem 2rem;
+                            font-size: 2rem;
+                        } 
+                    }
+                }
+            }
+            #form-container{
+                background: white;
+                padding: 1rem 2rem;
+                border: 1px solid #f9f9f9;
+                .square-image{
+                    width: auto;
+                    height: 70px;
+                }
+                .third {
+                    float: left;
+                    width: calc((100% - 32px) / 3);
+                    padding: 0;
+                    margin: 0 16px 16px 0;
+                }
+
+                .third:last-of-type {
+                    margin-right: 0;
+                }
+
+                /* Define how SqPaymentForm iframes should look */
+                .sq-input {
+                    height: 66px;
+                    box-sizing: border-box;
+                    display: inline-block;
+                    background: #ededed;
+                    -webkit-transition: border-color .2s ease-in-out;
+                    -moz-transition: border-color .2s ease-in-out;
+                    -ms-transition: border-color .2s ease-in-out;
+                    transition: border-color .2s ease-in-out;
+                }
+
+                /* Define how SqPaymentForm iframes should look when they have focus */
+                .sq-input--focus {
+                    border: 1px solid #4A90E2;
+                }
+
+                /* Define how SqPaymentForm iframes should look when they contain invalid values */
+                .sq-input--error {
+                    border: 1px solid #E02F2F;
+                }
+                button{
+                    background: #3190f1;
+                    box-sizing: border-box;
+                    text-decoration: none;
+                    color: white;
+                    padding: 1rem 3rem;
+                    font-size: 1.2rem;
+                    font-family:$primary-font;
+                    margin-right:18px;
+                    border:none;
+                }
+                #sq-card-number {
+                    margin-bottom: 16px;
+                }
+            }
         }
     }
 }

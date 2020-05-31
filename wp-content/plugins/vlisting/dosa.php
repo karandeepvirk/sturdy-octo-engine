@@ -14,6 +14,7 @@ defined('ABSPATH') OR exit;
 	include 'menu_controller.php';
 	include 'menu_model.php';
 	include 'order_controller.php';
+	include 'flow_controller.php';
 	wp_enqueue_script('admin-scripts', plugin_dir_url(__FILE__).'/admin-scripts.js');
 	wp_enqueue_style('style', plugin_dir_url(__FILE__).'/style.css');
 	register_activation_hook(__FILE__, 'add_operator_role');

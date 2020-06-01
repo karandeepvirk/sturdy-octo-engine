@@ -37,11 +37,12 @@ jQuery(document).ready(function($){
 		// All input actions can be added here such as click, hover, key
 		inputEvents:function(){
 			objDosa.element_category_image.click(function(){
-				var intTermId = parseInt($(this).attr('data-id'));
+				var intTermId 	  = parseInt($(this).attr('data-id'));
+				var strChildCheck = $(this).attr('data-child');
 				$('.sub-level').hide();
 				if(intTermId>0){
 					$('.sub-level').show();
-					objDosa.showSubMenu(intTermId);
+					objDosa.showSubMenu(intTermId,strChildCheck);
 				}
 			});
 
@@ -70,6 +71,10 @@ jQuery(document).ready(function($){
 	    		var intPid   = parseInt($(this).attr('data-pid'));
 				objDosa.addToOrder(intPid,intValue);
 			});
+	    	$('.discount').click(function(e){
+				e.preventDefault();
+				objDosa.showDiscountView();
+			});
 
 			objDosa.element_order_button.click(function(e){
 				e.preventDefault();
@@ -94,6 +99,19 @@ jQuery(document).ready(function($){
 			$(document).on('click','.remove-product-by-id',function(e){
 				var intProductId = parseInt($(this).attr('id'));
 				objDosa.removeProduct(intProductId);
+			});
+
+			$(document).on('click','.sub-level-inner',function(e){
+				$(this).attr('data-clicked',true);
+				var intTermId = parseInt($(this).attr('data-child'));
+
+				if(!$(this).hasClass('show-icon')){
+					$(this).addClass('show-icon');
+					$('.term-'+intTermId).show();
+				}else{
+					$('.term-'+intTermId).hide();
+					$(this).removeClass('show-icon');
+				}
 			});
 		},
 		cancelOrder:function(e){
@@ -127,14 +145,17 @@ jQuery(document).ready(function($){
 				}
 			});
 		},
-		showSubMenu:function(intTermId){
+		showSubMenu:function(intTermId, strChildCheck){
 			objDosa.element_order_modal.hide();
 			$('.inner-box').hide();
 			$('.sub-level-inner').hide();
 			$('[data-parent="'+intTermId+'"]').show();
-			$('.term-'+intTermId).show();
+			if(strChildCheck == 'false'){
+				$('.term-'+intTermId).show();
+			}
 			$('.order-modal').hide();
 			$('.payments-container').hide();
+			$('.discount-modal').hide();
 		},
 		throwOnModal:function(strTitle, intPrice, strStyle, intProductId, strDescription){
 			objDosa.element_order_modal.hide();
@@ -150,6 +171,7 @@ jQuery(document).ready(function($){
 			objDosa.element_modal.show();
 			$('.order-modal').hide();
 			$('.payments-container').hide();
+			$('.discount-modal').hide();
 		},
 		resetModal:function(){
 			objDosa.element_success_message.html();
@@ -165,6 +187,7 @@ jQuery(document).ready(function($){
 			objDosa.element_modal.hide();
 			objDosa.element_box.show();
 			$('.payments-container').hide();
+			$('.discount-modal').hide();
 		},
 		incrementValue:function(e){
 			var valueElement = $('#value');
@@ -220,8 +243,18 @@ jQuery(document).ready(function($){
 			$('.order-modal').show();
 			$('.payments-container').hide();
 			$('.sub-level').hide();
+			$('.discount-modal').hide();
 		},
-
+		showDiscountView:function(){
+			objDosa.element_success_message.html('');
+			objDosa.element_success_message.hide();
+			objDosa.element_modal.hide();
+			objDosa.element_box.hide();
+			$('.order-modal').show();
+			$('.discount-modal').hide();
+			$('.payments-container').hide();
+			$('.sub-level').hide();
+		},
 		showPaymentView:function(){
 			objDosa.element_success_message.html('');
 			objDosa.element_success_message.hide();
@@ -230,23 +263,21 @@ jQuery(document).ready(function($){
 			$('.order-modal').hide();
 			$('.payments-container').show();
 			$('.sub-level').hide();
+			$('.discount-modal').hide();
 		},
 		updateAppStates(objResponse){
 			if(objResponse.cart_string.length>0){
 				objDosa.element_ajax_cart.html(objResponse.cart_string);
 			}
-			if(objResponse.show_buttons == true){
-				$('.order-button').removeClass('hide-out');
-				$('.pay').removeClass('hide-out');
-				$('.cancel').removeClass('hide-out');
-			}else{
-				$('.order-button').addClass('hide-out');
-				$('.pay').addClass('hide-out');
-				$('.cancel').addClass('hide-out');
-			}
+			
+			(objResponse.show_buttons == true) ? $('.top-bar-order-buttons').removeClass('hide-out') : $('.top-bar-order-buttons').addClass('hide-out');
+			
 			objDosa.element_order_button_value.html(objResponse.total_items);
+			
 			objDosa.element_total_payment_button.html(objResponse.order_total.toFixed(2));
+			
 			$('.order-ajax-hook').hide();
+			
 			$.each(objResponse.products, function() {
 				var intProductId = this.id; 
 				var intValue 	 = this.value;

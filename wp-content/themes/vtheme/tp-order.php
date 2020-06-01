@@ -48,9 +48,12 @@ $arrPosts = get_posts($argsProducts);
 				<?php
 				if(!empty($arrParents)){
 					foreach($arrParents as $key => $objParents){
+						$arrChildrenCheck = array();
+						$strChildrenCheck = false;
 						$strImage = get_term_meta($objParents->term_id,'term_image',true);
+						$bolChildCheck = Menu_Model::checkChilds($objParents->term_id);
 						if(!empty($strImage)){?>
-							<div data-id ="<?php echo $objParents->term_id;?>" class="slick-carousel-image" style="background-image:url(<?php echo $strImage;?>);">
+							<div data-child="<?php echo $bolChildCheck;?>" data-id ="<?php echo $objParents->term_id;?>" class="slick-carousel-image" style="background-image:url(<?php echo $strImage;?>);">
 								<h2 class="carousel-title"><?php echo $objParents->name;?></h2>
 							</div>
 						<?php }
@@ -69,8 +72,10 @@ $arrPosts = get_posts($argsProducts);
 				$strImage = get_term_meta($objChildrens->term_id,'term_image',true);
 				if(!empty($strImage)){?>
 					<div class="sub-level-inner" data-parent = "<?php echo $objChildrens->parent;?>" data-child = "<?php echo $objChildrens->term_id;?>">
-						<div style="background-image: url(<?php echo $strImage;?>);" class="sub-level-image"></div>
-						<h2><input type="checkbox" name="" checked><?php echo $objChildrens->name;?></h2>
+						<div style="background-image: url(<?php echo $strImage;?>);" class="sub-level-image">
+							<i class="fas fa-check fa-3x"></i>
+						</div>
+						<h2><?php echo $objChildrens->name;?></h2>
 					</div>
 				<?php }
 			}
@@ -87,6 +92,7 @@ $arrPosts = get_posts($argsProducts);
 			$arrTerms 		= get_the_terms($objPosts->ID,'menu_category');
 			$strDescription = Helper_Controller::getPostContent($objPosts->post_content,200, true, false);
 			$strPrice 		= get_post_meta($objPosts->ID,'item_price',true);
+			$strItemMeat  	= get_post_meta($objPosts->ID,'item_meat',true);
 			if(!empty($arrTerms)){
 				foreach ($arrTerms as $key => $objTerms) {
 					$arrTermsId[] 	= 'term-'.$objTerms->term_id;
@@ -96,6 +102,13 @@ $arrPosts = get_posts($argsProducts);
 			?>
 			<div class="inner-box <?php echo $strTermsId;?>" id="<?php echo $objPosts->ID;?>" data-terms='<?php echo $strTermsId;?>'>
 				<div class="item-image" style="background-image: url(<?php echo $strImageUrl;?>);">
+					<?php 
+						if($strItemMeat == 'vegetarian'){?>
+							<img title="Vegetarian Product" class="vegan-image" src="<?php echo get_template_directory_uri()?>/images/veg.svg.png;?>">
+						<?php }else{?>
+							<img title ="Meat In Product" class="vegan-image" src="<?php echo get_template_directory_uri()?>/images/meat.png;?>">
+						<?php }
+					?>
 					<h1 class="item-title"><?php echo ucwords(strtoupper($objPosts->post_title));?></h1>
 					<span class="price-circle">$
 						<span class="price-value"><?php echo $strPrice; ?></span>
@@ -141,6 +154,24 @@ $arrPosts = get_posts($argsProducts);
 					<div class="success-message"></div>
 				</div>
 			</div>
+		</div>
+	</div>
+</div>
+
+<div class="discount-modal">
+	<div class="modal-top">
+		<span class="close-modals">
+			<i class="fas fa-times"></i>
+		</span>
+		<h2 class="modal-title">DISCOUNT</h2>
+	</div>
+
+	<div class="modal-inner">
+		<div class="modal-left">
+
+		</div>
+		<div class="modal-right">
+			
 		</div>
 	</div>
 </div>

@@ -29,8 +29,18 @@ abstract class Menu_Model{
 		$arrReturn['show_in_addon'] 	= get_post_meta($post->ID,'show_in_addon',true);
 		$arrReturn['alcohol_in_item'] 	= get_post_meta($post->ID,'alcohol_in_item',true);
 		$arrReturn['item_has_spice'] 	= get_post_meta($post->ID,'item_has_spice',true);
+		$arrReturn['item_meat'] 	    = get_post_meta($post->ID,'item_meat',true);
 
 		return $arrReturn;
+	}
+
+	public static function checkChilds($intParentTermId){
+		$strReturn = 'false';
+		$arrChildrenCheck = get_term_children($intParentTermId,'menu_category');
+		if(!empty($arrChildrenCheck)){
+			$strReturn = 'true';
+		}
+		return $strReturn;
 	}
 
 	/**
@@ -73,6 +83,18 @@ abstract class Menu_Model{
 			</div>
 		</div>
 
+		<!--Veg Or Non-VEG-->
+		<div class="admin-meta-fields">
+			<div class="input-holder select-holder">
+				<label>Select Meat Type: </label>
+				<select name="item_meat">
+					<option <?php echo $arrFields['item_meat'] == 'vegetarian' ? 'selected' : '';?> value="vegetarian">Vegetarian</option>
+					<option <?php echo $arrFields['item_meat'] == 'chicken' ? 'selected' : '';?> value="chicken">Chicken</option>
+					<option <?php echo $arrFields['item_meat'] == 'bacon' ? 'selected' : '';?> value="bacon">Bacon</option>
+					<option <?php echo $arrFields['item_meat'] == 'beef' ? 'selected' : '';?> value="beef">Beef</option>
+				</select>
+			</div>
+		</div>
 		<!--Has Spice Levels-->
 		<div class="admin-meta-fields">
 			<div class="input-holder">
@@ -95,6 +117,7 @@ abstract class Menu_Model{
 				<label>Alcoholic?</label>
 			</div>
 		</div>
+
 		<!--Disable Item-->
 		<div class="admin-meta-fields">
 			<div class="input-holder">
@@ -115,6 +138,7 @@ abstract class Menu_Model{
 		update_post_meta($post_id,'show_in_addon',$_POST['show_in_addon']);
 		update_post_meta($post_id,'alcohol_in_item',$_POST['alcohol_in_item']);
 		update_post_meta($post_id,'item_has_spice',$_POST['item_has_spice']);
+		update_post_meta($post_id,'item_meat',$_POST['item_meat']);
 	}
 }
 ?>

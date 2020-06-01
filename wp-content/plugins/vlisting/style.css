@@ -54,6 +54,19 @@
     margin: 6px 0;
     padding: 14px 10px;
 }
+.admin-meta-fields .select-holder{
+    margin: 6px 0;
+    padding: 0px 10px;
+}
+.admin-meta-fields .select-holder select{
+    height: 50px;
+    width: 50%;
+    font-size: 1rem;
+}
+
+.admin-meta-fields .select-holder label{
+    margin-right: 10px;
+}
 
 .admin-meta-fields label{
     color: black;

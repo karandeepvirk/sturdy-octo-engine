@@ -29,15 +29,14 @@
 			<?php }?>
 			<a href="" class="top-button global">GLOBAL ORDERS</a>
 			<?php 
+				$intHideOut = (Order_Controller::getTotalProductsInOrder() == 0) ? 'hide-out' : '';
 				if(Flow_Controller::IfUserCanModifyOrder()){?>
-					<a href="" class="top-button discount">ADD DISCOUNT</a>
+					<a href="" class="top-bar-order-buttons <?php echo $intHideOut;?> top-button discount">ADD DISCOUNT</a>
 				<?php }
 			?>
-			<?php 
-				$intHideOut = (Order_Controller::getTotalProductsInOrder() == 0) ? 'hide-out' : '';?>
-				<a href="" class="<?php echo $intHideOut;?> top-button order-button">Order (<span id="total-order-button"><?php echo Order_Controller::getOrderTotal()['total_items'];?></span>)</a>
-				<a href="" class="<?php echo $intHideOut;?> top-button pay">Pay ($<span class="total-payment-button"><?php echo Order_Controller::getOrderTotal()['total'];?></span>)</a>
-				<a href="" class="<?php echo $intHideOut;?> top-button cancel">CANCEL ORDER</a>
+				<a href="" class="top-bar-order-buttons <?php echo $intHideOut;?> top-button order-button">Order (<span id="total-order-button"><?php echo Order_Controller::getOrderTotal()['total_items'];?></span>)</a>
+				<a href="" class="top-bar-order-buttons <?php echo $intHideOut;?> top-button pay">Pay ($<span class="total-payment-button"><?php echo Order_Controller::getOrderTotal()['total'];?></span>)</a>
+				<a href="" class="top-bar-order-buttons <?php echo $intHideOut;?> top-button cancel">CANCEL ORDER</a>
 		</div>
 	</div>
 <body>

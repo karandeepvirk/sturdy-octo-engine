@@ -110,18 +110,18 @@ $arrPosts = get_posts($argsProducts);
 						<?php }
 					?>
 					<h1 class="item-title"><?php echo ucwords(strtoupper($objPosts->post_title));?></h1>
-					<span class="price-circle">$
+					<span class="price-circle animate__animated animate__fadeIn">$
 						<span class="price-value"><?php echo $strPrice; ?></span>
 					</span>
 					<div class="inner-box-description" style="display: none;"><?php echo $strDescription;?></div>
 					<div class="order-ajax-hook" id="order-ajax-hook-<?php echo $objPosts->ID;?>">
-					<?php 
-						if(Order_Controller::checkIfProductInOrder($objPosts->ID)){?>
-							<span class="order-in-cart">
-								<?php echo Order_Controller::getTotalByIdInOrder($objPosts->ID).' in Order';?>
-							</span>
-						<?php }
-					?>
+						<?php 
+							if(Order_Controller::checkIfProductInOrder($objPosts->ID)){?>
+								<span class="order-in-cart">
+									<?php echo Order_Controller::getTotalByIdInOrder($objPosts->ID).' in Order';?>
+								</span>
+							<?php }
+						?>
 					</div>
 				</div>
 			</div>
@@ -156,77 +156,59 @@ $arrPosts = get_posts($argsProducts);
 			</div>
 		</div>
 	</div>
-</div>
 
-<div class="discount-modal">
-	<div class="modal-top">
-		<span class="close-modals">
-			<i class="fas fa-times"></i>
-		</span>
-		<h2 class="modal-title">DISCOUNT</h2>
+	<div class="ajax-cart"><!---->  		
+		<?php echo Order_Controller::cartString();?>
 	</div>
-
-	<div class="modal-inner">
-		<div class="modal-left">
-
-		</div>
-		<div class="modal-right">
-			
-		</div>
-	</div>
-</div>
-<div class="ajax-cart"><!---->  		
-	<?php echo Order_Controller::cartString();?>
-</div>
-
-<div class="payments-container">
-	<div class="payments-accrodian">
-		<div class="paymets-header">
-			<h2>Payments</h2>
-			<span><i class="fas fa-chevron-down"></i></span>
-		</div>
-		<div class="payments-body">
-			<div class="payment-modal">
-				<div class="modal-top">	
-					<h2 class="modal-title-payment">Online Payment</h2>
-					<span class="payment-form-button">
-						<i class="fas fa-minus"></i>
-					</span>
-				</div>
-				<div id="form-container">
-					<img class="square-image" src="<?php echo get_template_directory_uri()?>/images/square-logo.png">
-					<div id="sq-card-number"></div>
-					<div class="third" id="sq-expiration-date"></div>
-					<div class="third" id="sq-cvv"></div>
-					<div class="third" id="sq-postal-code"></div>
-					<button id="sq-creditcard" onclick="onGetCardNonce(event)">Pay $<span class="total-payment-button"><?php echo showPrice(Order_Controller::getOrderTotal());?></span></button><br>
-				</div> 
+	<div class="payments-container">
+		<div class="payments-accrodian">
+			<div class="paymets-header">
+				<h2>Payments</h2>
+				<span><i class="fas fa-chevron-down"></i></span>
 			</div>
-
-			<div class="payment-modal">
-				<div class="modal-top">	
-					<h2 class="modal-title-payment">Cash Payment</h2>
-					<span class="payment-form-button">
-						<i class="fas fa-minus"></i>
-					</span>
+			<div class="payments-body">
+				<div class="payment-modal">
+					<div class="modal-top">	
+						<h2 class="modal-title-payment">Online Payment</h2>
+						<span class="payment-form-button">
+							<i class="fas fa-minus"></i>
+						</span>
+					</div>
+					<div id="form-container">
+						<img class="square-image" src="<?php echo get_template_directory_uri()?>/images/square-logo.png">
+						<div id="sq-card-number"></div>
+						<div class="third" id="sq-expiration-date"></div>
+						<div class="third" id="sq-cvv"></div>
+						<div class="third" id="sq-postal-code"></div>
+						<button id="sq-creditcard" onclick="onGetCardNonce(event)">Pay $<span class="total-payment-button"><?php echo showPrice(Order_Controller::getOrderTotal()['total']);?></span></button><br>
+					</div> 
 				</div>
-			</div>
 
-			<div class="payment-modal">
-				<div class="modal-top">	
-					<h2 class="modal-title-payment">Cheque Payment</h2>
-					<span class="payment-form-button">
-						<i class="fas fa-minus"></i>
-					</span>
+				<div class="payment-modal">
+					<div class="modal-top">	
+						<h2 class="modal-title-payment">Cash Payment</h2>
+						<span class="payment-form-button">
+							<i class="fas fa-minus"></i>
+						</span>
+					</div>
 				</div>
-			</div>
 
-			<div class="payment-modal">
-				<div class="modal-top">	
-					<h2 class="modal-title-payment">Terminal Payment</h2>
-					<span class="payment-form-button">
-						<i class="fas fa-minus"></i>
-					</span>
+				<div class="payment-modal">
+					<div class="modal-top">	
+						<h2 class="modal-title-payment">Cheque Payment</h2>
+						<span class="payment-form-button">
+							<i class="fas fa-minus"></i>
+						</span>
+					</div>
+				</div>
+
+				<div class="payment-modal">
+					<div class="modal-top">	
+						<h2 class="modal-title-payment">Terminal Payment</h2>
+						<span class="payment-form-button">
+							<i class="fas fa-minus"></i>
+						</span>
+					</div>
 				</div>
 			</div>
 		</div>

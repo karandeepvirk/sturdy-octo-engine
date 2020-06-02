@@ -15,6 +15,7 @@
 		<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
 		<script src="https://kit.fontawesome.com/6837e55fb8.js" crossorigin="anonymous"></script>
 		<script type="text/javascript" src="https://js.squareupsandbox.com/v2/paymentform"></script>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"/>
 	</head>
 	<div class="main-top-bar">
 		<div class="logo">
@@ -29,11 +30,7 @@
 			<?php }?>
 			<a href="" class="top-button global">GLOBAL ORDERS</a>
 			<?php 
-				$intHideOut = (Order_Controller::getTotalProductsInOrder() == 0) ? 'hide-out' : '';
-				if(Flow_Controller::IfUserCanModifyOrder()){?>
-					<a href="" class="top-bar-order-buttons <?php echo $intHideOut;?> top-button discount">ADD DISCOUNT</a>
-				<?php }
-			?>
+				$intHideOut = (Order_Controller::getTotalProductsInOrder() == 0) ? 'hide-out' : '';?>
 				<a href="" class="top-bar-order-buttons <?php echo $intHideOut;?> top-button order-button">Order (<span id="total-order-button"><?php echo Order_Controller::getOrderTotal()['total_items'];?></span>)</a>
 				<a href="" class="top-bar-order-buttons <?php echo $intHideOut;?> top-button pay">Pay ($<span class="total-payment-button"><?php echo Order_Controller::getOrderTotal()['total'];?></span>)</a>
 				<a href="" class="top-bar-order-buttons <?php echo $intHideOut;?> top-button cancel">CANCEL ORDER</a>

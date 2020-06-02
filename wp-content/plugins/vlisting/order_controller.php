@@ -180,8 +180,9 @@ class Order_Controller{
 		$strHTML = '';
 		ob_start();?>
 		<!-- GET HTML OBJECT -->
+		<div class="order-container">
+		<h2>ORDER</h2>
 		<div class="order-modal">
-			<h2>ORDER</h2>
 			<div class="grid-body">
 				<?php  
 				$arrOrders = array();
@@ -214,6 +215,44 @@ class Order_Controller{
 			</div>
 			<h3>Order Total : $<?php echo showPrice($orderTotal);?></h3>
 		</div>
+		<?php 
+		if(Flow_Controller::IfUserCanModifyOrder()){?>
+			<div class="discount-modal">
+				<div class="discount-modal-top">
+					<h2 class="discount-modal-title">DISCOUNT</h2>
+					<span><i class="fas fa-chevron-up"></i></span>
+				</div>
+
+				<div class="discount-modal-inner">
+					<input type="number" placeholder="Type Number" name="order-discount" class="discount-modal-input">
+					<button class="discount-modal-input">ADD</button>
+				</div>
+			</div>
+		<?php }?>
+
+				<?php 
+		if(Flow_Controller::IfUserCanModifyOrder()){?>
+			<div class="table-modal">
+				<div class="table-modal-top">
+					<h2 class="table-modal-title">TABLE</h2>
+					<span><i class="fas fa-chevron-up"></i></span>
+				</div>
+
+				<div class="table-modal-inner">
+					<span value="1">1</span>
+					<span value="2">2</span>
+					<span value="3">3</span>
+					<span class="active" value="4">4</span>
+					<span value="5">5</span>
+					<span value="6">6</span>
+					<span value="7">7</span>
+					<span value="8">8</span>
+					<span value="9">9</span>
+					<span value="10">10</span>
+				</div>
+			</div>
+		<?php }?>
+	</div>
 	<?php 
 	$strHTML = ob_get_clean();
 	return $strHTML;

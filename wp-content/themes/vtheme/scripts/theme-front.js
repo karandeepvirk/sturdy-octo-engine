@@ -154,6 +154,7 @@ jQuery(document).ready(function($){
 				$('.term-'+intTermId).show();
 			}
 			$('.order-modal').hide();
+			$('.table-modal').hide();
 			$('.payments-container').hide();
 			$('.discount-modal').hide();
 		},
@@ -170,6 +171,7 @@ jQuery(document).ready(function($){
 			$('.modal-description').html(strDescription);
 			objDosa.element_modal.show();
 			$('.order-modal').hide();
+			$('.table-modal').hide();
 			$('.payments-container').hide();
 			$('.discount-modal').hide();
 		},
@@ -178,6 +180,7 @@ jQuery(document).ready(function($){
 			objDosa.element_success_message.hide();
 			objDosa.element_box.hide();
 			$('.order-modal').hide();
+			$('.table-modal').hide();
 			$('.modal-image').attr('style','');
 			$('.modal-title').text('');
 			$('#add-to-order').removeAttr('data-pid');
@@ -241,17 +244,8 @@ jQuery(document).ready(function($){
 			objDosa.element_modal.hide();
 			objDosa.element_box.hide();
 			$('.order-modal').show();
-			$('.payments-container').hide();
-			$('.sub-level').hide();
-			$('.discount-modal').hide();
-		},
-		showDiscountView:function(){
-			objDosa.element_success_message.html('');
-			objDosa.element_success_message.hide();
-			objDosa.element_modal.hide();
-			objDosa.element_box.hide();
-			$('.order-modal').show();
-			$('.discount-modal').hide();
+			$('.table-modal').show();
+			$('.discount-modal').show();
 			$('.payments-container').hide();
 			$('.sub-level').hide();
 		},
@@ -261,9 +255,10 @@ jQuery(document).ready(function($){
 			objDosa.element_modal.hide();
 			objDosa.element_box.hide();
 			$('.order-modal').hide();
+			$('.table-modal').hide();
+			$('.discount-modal').hide();
 			$('.payments-container').show();
 			$('.sub-level').hide();
-			$('.discount-modal').hide();
 		},
 		updateAppStates(objResponse){
 			if(objResponse.cart_string.length>0){
